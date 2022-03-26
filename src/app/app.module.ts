@@ -4,13 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
 
 import { AppComponent } from './app.component';
+
 const routes:Routes=[
   {path:'home',loadChildren:()=> import('./modules/home/home.module').then(m => m.HomeModule)},
   {path:'products',loadChildren:()=> import('./modules/products/products.module').then(m => m.ProductsModule)},
-  {path:'user',loadChildren:()=> import('./modules/user/user.module').then(m => m.UserModule)}]
+  {path:'user',loadChildren:()=> import('./modules/user/user.module').then(m => m.UserModule)},
+  {path:'checkout',loadChildren:()=> import('./modules/shopping/shopping.module').then(m => m.ShoppingModule)}
+
+]
+  
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
