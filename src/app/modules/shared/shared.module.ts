@@ -8,6 +8,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -23,6 +24,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FooterComponent,
     PreviewCartComponent,
     ModalComponent,
-    LoadingSpinnerComponent]
+    LoadingSpinnerComponent
+  ],
+  providers:[]
 })
 export class SharedModule { }
