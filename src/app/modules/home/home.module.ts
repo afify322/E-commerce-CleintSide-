@@ -14,6 +14,7 @@ import { HomeRouting } from './home-routing';
 
 
 
+
 @NgModule({
   declarations: [
     CollectionComponent,

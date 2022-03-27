@@ -5,6 +5,9 @@ import {APP_BASE_HREF} from '@angular/common';
 
 import { AppComponent } from './app.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 const routes:Routes=[
   {path:'home',loadChildren:()=> import('./modules/home/home.module').then(m => m.HomeModule)},
   {path:'products',loadChildren:()=> import('./modules/products/products.module').then(m => m.ProductsModule)},
@@ -25,7 +28,8 @@ const routes:Routes=[
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
       relativeLinkResolution: 'legacy'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
