@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
-import {HttpClient}from '@angular/common/http';
-import { Observable } from 'rxjs';
-// import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsHttpClientService {
+  url: string = "https://hedoom.herokuapp.com";
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) {
+  getProductById(id: string | null) {
+    return this.http.get<any>(this.url + "/products/" + id);
+  }
+  findProductByCategory(id: string | null){
+    return this.http.get<any>(this.url + "/products/category/" + id)
+  }
 
-   }
-   findProductByCategory():Observable<any>{
-     const url=""
-     return this.http.get<any>(url);
-   }
-
-  //  findCategoryById(ID):Observable<any>{
-  //    const url="categories/ID"
-  //    return this.http.get<any>(url);
-  //  }
-
- //  productSearch(search):Observable<any>{
-  //    const url="categories/search"
-  //    return this.http.get<any>(url);
-  //  }
+  productSearch(search: string | null){
+    console.log(this.url + "/products" + search);
+    return this.http.get<any>(this.url + "/products" + search);
+  }
+  findCategoryById(id:string|null){
+    return this.http.get<any>(this.url+ "/category/" + id);
+  }
 }

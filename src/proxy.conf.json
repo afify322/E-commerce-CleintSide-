@@ -1,0 +1,4 @@
+{
+    "/api": {
+    "target": "https://hedoom.herokuapp.com",
+    "secure": false }}

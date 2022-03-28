@@ -9,7 +9,8 @@ import { ProductsHeaderComponent } from './products-header/products-header.compo
 import { ProductsHttpClientService } from './products-http-client.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ProductsListComponent,
     ProductsComponent,
     SearchComponent,
-    ProductsHeaderComponent
+    ProductsHeaderComponent,
+    ProductDetailsComponent
     
   ],
   imports: [
@@ -26,9 +28,13 @@ import { FormsModule } from '@angular/forms';
     ProductsRouting,
     SharedModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+
+    
+    
   ],
-  providers:[ProductsHttpClientService]
+  providers:[ProductsHttpClientService,HttpClient]
 
 })
 export class ProductsModule { }
