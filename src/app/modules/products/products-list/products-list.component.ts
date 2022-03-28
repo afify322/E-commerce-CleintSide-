@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-// import { ProductsHttpClientService } from '../products-http-client.service';
-import { NgxPaginationModule, PaginationControlsDirective, PaginationInstance, PaginatePipe, PaginationControlsComponent, PaginationService } from 'ngx-pagination';
-
-
+import { ProductsHttpClientService } from '../products-http-client.service';
 
 @Component({
   selector: 'app-products-list',
@@ -13,41 +10,32 @@ import { NgxPaginationModule, PaginationControlsDirective, PaginationInstance, P
 })
 export class ProductsListComponent implements OnInit {
   @Input() searchedProducts: any[] = []
-  products = ["clothes", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df"];
+  products: any = [];
   collectionID: string | null = "";
-  collectionName: string | null = "";
+  collectionName: any = "";
   public page: number = 1;
   totalProducts: string = '20';
-
-  constructor(private x: ActivatedRoute) {
+  constructor(private x: ActivatedRoute, private httpClient: ProductsHttpClientService) {
 
   }
-  // constructor(private x: ActivatedRoute, private HttpClient: ProductsHttpClientService) {
-  //   // this.products=[];
-  // }
-
+  
   ngOnInit(): void {
-  this.products = ["clothes", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df", "df"];
-    this.x.queryParamMap.subscribe({
-      next: (v) => this.collectionID = v.get("category")
-    });
+
+    this.x.queryParamMap.subscribe
+      ({
+        next: (v) => this.collectionID = v.get("category")
+      });
+    this.httpClient.findCategoryById(this.collectionID).subscribe((data: any) => this.collectionName = data.category.name);
+    this.httpClient.findProductByCategory(this.collectionID).subscribe((data: any) => this.products = data.products);
 
 
-
-    // this.HttpClient.findProductByCategory(this.collectionID).subscribe(products=>{
-    //   this.products=products;
-    //   this.totalProducts=products.length;
-    // })
-
-    // this.HttpClient.findCategoryById(this.collectionID).subscribe(category=>{
-    //   this.collectionName=category.Name;
-    // })
   }
   ngOnChanges(): void {
-      console.log(this.searchedProducts);
-      this.products = this.searchedProducts;
-      this.totalProducts=`${this.searchedProducts.length}`;
+
+    this.products = this.searchedProducts;
+    this.totalProducts = `${this.searchedProducts.length}`;
   }
+
 }
 
 

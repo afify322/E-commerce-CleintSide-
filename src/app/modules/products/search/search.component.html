@@ -3,8 +3,33 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="d-flex justify-content-center">
-            <input class="form-control mr-2 w-50 p-3" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchString" >
-            <button class="btn btn-outline-secondary" (click)="search()" >Search</button>
+          <input class="form-control mr-2 w-50 p-3" type="search" placeholder="Search" aria-label="Search"
+            [(ngModel)]="searchString" *ngIf="FilterBy!='price'&&FilterBy!='rating'">
+            <div class="d-flex justify-content-center">
+              <input class="form-control mr-2 w-3 p-3" type="search" placeholder="Min" aria-label="Search"
+              min="value" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+            <input class="form-control mr-2 w-3 p-3" type="search" placeholder="Max" aria-label="Search"
+              max="value" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+          <button class="btn btn-outline-secondary" (click)="search()">Search</button>
+
+            </div>
+
+
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle ml-2" type="button" data-toggle="dropdown">Filter By
+              <span class="caret"></span></button>
+            <ul class="dropdown-menu m-0 p-0">
+              <li><button class="btn  btn-outline-dark border-light container-fluid"
+                  (click)="updateFilterBy('name')">Name</button></li>
+              <li><button class="btn  btn-outline-dark border-light container-fluid"
+                  (click)="updateFilterBy('description')"> Description</button></li>
+              <li><button class="btn  btn-outline-dark  border-light container-fluid"
+                  (click)="updateFilterBy('price')">price</button></li>
+              <li><button class="btn  btn-outline-dark border-light container-fluid"
+                  (click)="updateFilterBy('rating')">Rating</button></li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
