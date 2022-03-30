@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
+
+
 const routes:Routes=[
   {path:'home',loadChildren:()=> import('./modules/home/home.module').then(m => m.HomeModule)},
   {path:'products',loadChildren:()=> import('./modules/products/products.module').then(m => m.ProductsModule)},
@@ -14,7 +17,6 @@ const routes:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-   
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,9 @@ const routes:Routes=[
       anchorScrolling: 'enabled',
       relativeLinkResolution: 'legacy'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
