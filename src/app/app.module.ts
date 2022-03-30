@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
+
+
 const routes:Routes=[
   {path:'home',loadChildren:()=> import('./modules/home/home.module').then(m => m.HomeModule)},
   {path:'products',loadChildren:()=> import('./modules/products/products.module').then(m => m.ProductsModule)},
@@ -19,7 +22,10 @@ const routes:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
+=======
 
+>>>>>>> 18a12c5349d7828f4ffa1e59533969f621ea8353
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,9 @@ const routes:Routes=[
       anchorScrolling: 'enabled',
       relativeLinkResolution: 'legacy'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
