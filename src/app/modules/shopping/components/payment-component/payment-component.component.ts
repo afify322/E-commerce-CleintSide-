@@ -18,14 +18,14 @@ export class PaymentComponentComponent implements OnInit {
   countries: any = ['Egypt', 'America', 'Tennessee', 'Brazil', 'Australia', 'Canada'];
   totalPrice: any;
   cartItems :any;
-  userId = '609d65943373711346c5e950';
+  userId = '6234b1d08b1c0e34977db2ae';
   cart: Cart = new Cart;
 
 
   ProductOrderForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/)]),
+    phone: new FormControl('',[Validators.required]),
     Country: new FormControl('', [Validators.required]),
     Address1: new FormControl('', [Validators.required]),
     Address2: new FormControl('', [Validators.required]),
@@ -46,10 +46,10 @@ export class PaymentComponentComponent implements OnInit {
 
 
   sumbitOrder() {
+    // this.router.navigate(['/ThankYou']);
 
     if (!this.ProductOrderForm.valid) { return };
     console.log(this.ProductOrderForm.value);
-
     const order: Order = {
       orderItems: this.cartItems,
       shippingAddress1: this.ProductOrderForm.value.Address1,
@@ -58,19 +58,20 @@ export class PaymentComponentComponent implements OnInit {
       zip: this.ProductOrderForm.value.ZIP,
       country: this.ProductOrderForm.value.Country,
       phone: this.ProductOrderForm.value.phone,
-      status: 0,
-      user: this.userId,
-      dateOrdered: new Date()
+      status: "pending",
+      totalPrice:200,
+      userId: this.userId,
     };
 
-    this.ordersService.createOrder(order).subscribe(
-      () => {
-        console.log(this.ordersService.ordersObservable);
+
+    this.ordersService.createOrder(order).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.router.navigate(['/checkout/ThankYou']);
       },
-      () => {
-      
-      }
-    );
+      error: (err) => {console.log(err)}
+    });
+ 
 
   }
 

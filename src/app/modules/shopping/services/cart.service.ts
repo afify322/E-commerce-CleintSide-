@@ -7,7 +7,7 @@ export const CART_KEY = 'cart';
 })
 export class CartService {
     
-    cartItemArr :  CartItem[] = [{productId:"62346670e2e59eb905f97786",quantity:5},{productId:"62346670e2e59eb905f97789",quantity:2}]
+    cartItemArr :  CartItem[] = [{id:"6234b0f9399cfe48a5fb95ec",quantity:5},{id:"623a1fffde35b0bc3033cf15",quantity:2}]
     constructor() { }
 
 

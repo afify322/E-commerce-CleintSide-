@@ -3,7 +3,7 @@ export class Cart {
 }
 
 export class CartItem {
-    productId?: string;
+    id?: string;
     quantity?: number;
 }
 

@@ -15,6 +15,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { UserRouting } from './user-routing';
 import { UsersDashboardComponent } from './admin/users-dashboard/users-dashboard.component';
 import { OrdersDashboardComponent } from './admin/orders-dashboard/orders-dashboard.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
+import { UserFavoriteListComponent } from './Components/user-favorite-list/user-favorite-list.component';
+import { UserOrdersComponent } from './Components/user-orders/user-orders.component';
+import { UserOrderheaderUserProfileComponent } from './Components/user-orderheader-user-profile/user-orderheader-user-profile.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
@@ -24,7 +31,11 @@ import { OrdersDashboardComponent } from './admin/orders-dashboard/orders-dashbo
     SidebarComponent,
     DashboardComponent,
     UsersDashboardComponent,
-    OrdersDashboardComponent
+    OrdersDashboardComponent,
+    UserProfileComponent,
+    UserFavoriteListComponent,
+    UserOrdersComponent,
+    UserOrderheaderUserProfileComponent,
   ],
   imports: [
     UserRouting,
@@ -37,7 +48,11 @@ import { OrdersDashboardComponent } from './admin/orders-dashboard/orders-dashbo
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    SharedModule,
+    MatTableModule,
+   MDBBootstrapModule,
+
 
   ]
 })

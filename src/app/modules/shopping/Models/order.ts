@@ -1,8 +1,7 @@
 import { OrderItem } from './order-item';
-// import { User } from '@bluebits/users';
 
 export class Order {
-    id?: string;
+    _id?: string;
     orderItems?: OrderItem[];
     shippingAddress1?: string;
     shippingAddress2?: string;
@@ -10,8 +9,15 @@ export class Order {
     zip?: string;
     country?: string;
     phone?: string;
-    status?: number;
-    totalPrice?: string;
-    user?: any;
+    status?: string;
+    totalPrice?: number;
+    userId?: any;
     dateOrdered?: Date;
+
 }
+
+
+
+
+
+

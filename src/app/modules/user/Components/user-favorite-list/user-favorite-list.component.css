@@ -1,0 +1,33 @@
+.demo-table {
+    width: 100%;
+    /* background-color:rgb(235, 233, 233); */
+    /* background-color: #f5d595; */
+
+  }
+  
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+/*   
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+   */
+  /* .demo-row-is-clicked {
+    font-weight: bold;
+  } */
+  .mainDiv{
+    
+      width: 20%;
+      margin-left: 170px;
+  }
+
+  h1{
+    font-weight: bold;
+    text-align: center;
+    /* margin-left: 30px;
+    margin-left: 220px; */
+  }
+

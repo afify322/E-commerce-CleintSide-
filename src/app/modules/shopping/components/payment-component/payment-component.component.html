@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="title">
         <h2>Product Order Form</h2>
@@ -28,7 +29,7 @@
             </label>
             <label>
                 <span>Phone <span class="required">*</span></span>
-                <input type="number" name="phone" formControlName="phone">
+                <input type="text" name="phone" formControlName="phone">
                 <div class="error-message" *ngIf="
                 ProductOrderForm.get('phone')?.invalid && ProductOrderForm.get('phone')?.touched">
                     <span  class = "error-message-span"  *ngIf="ProductOrderForm.get('phone')?.hasError('required')">phone is required</span>
@@ -52,7 +53,7 @@
                 </div>
             </label>
             <label>
-                <span>Street Address <span class="required">*</span></span>
+                <span>shipping Address <span class="required">*</span></span>
                 <input type="text" name="Address1" formControlName="Address1" placeholder="Enter your address 1"
                     required>
                     <div class="error-message" *ngIf="
@@ -108,7 +109,7 @@
                 </tr>
 
             </table><br>
-            <button type="button" [disabled]="!ProductOrderForm.valid || !ProductOrderForm.dirty"  (click) = sumbitOrder()>Place Order</button>
+            <button  type="button" [disabled]="!ProductOrderForm.valid || !ProductOrderForm.dirty"  (click) = sumbitOrder()>Place Order</button>
         </div><!-- Yorder -->
 
     </div>
