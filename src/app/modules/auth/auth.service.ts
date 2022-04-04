@@ -25,9 +25,9 @@ export class AuthService {
     );
 }
 logout(){
-  localStorage.remove('token')
-  localStorage.remove('user')
-  localStorage.remove('cart')
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
+  localStorage.removeItem('cart')
   
   this.router.navigate(["/home"]);
 }
