@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  parentsearchedProducts:any[] = []
+  parentsearchedProducts:any;
+  parentsearchsize=0
+  parentPageToSearch:number=1;
+  // dataBack:boolean=false;
   constructor() { }
 
   ngOnInit(): void {

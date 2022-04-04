@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsListComponent } from './products-list/products-list.component';
 import {ProductsRouting} from './products-routing';
+
 import { SharedModule } from '../shared/shared.module';
 import { ProductsComponent } from './products.component';
 import { SearchComponent } from './search/search.component';
@@ -31,8 +32,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
 
-    
-    
   ],
   providers:[ProductsHttpClientService,HttpClient]
 

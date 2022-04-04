@@ -1,7 +1,13 @@
 
     <app-header></app-header>
-    <app-products-header></app-products-header>
-    <app-search (searchEvent)="parentsearchedProducts=$event"></app-search>
-    <app-products-list [searchedProducts]="parentsearchedProducts"></app-products-list>
+    <app-products-header ></app-products-header>
+    <app-search (searchEvent)="parentsearchedProducts=$event" (searchSizeEvent)="parentsearchsize=$event" 
+    [pageFromList]="parentPageToSearch"
+    ></app-search>
+    <!-- <app-products-list [searchedProducts]="parentsearchedProducts" (dataBackevent)="dataBack=$event"></app-products-list> -->
+    <app-products-list 
+     [searchedProductsobj]="parentsearchedProducts" [searchedSize]="parentsearchsize" (pageToSearchEvent)="parentPageToSearch=$event"> </app-products-list>
+    <!-- <app-loading-spinner *ngIf="!dataBack"></app-loading-spinner> -->
+
     <app-footer></app-footer>
 

@@ -1,0 +1,96 @@
+<li class="scroll-to-section"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></li>
+<small>{{cartCount}}</small>
+
+<!-- <div class="cart-page">
+    <div class="p-grid">
+        <div class="p-col-8">
+            <div>
+              <button (click)="backToShop()">
+                continue shopping
+              </button>
+            </div>
+            <div>
+                <h4>
+                    my cart : {{2}} Item {{5}}
+
+                </h4>
+            </div>
+            <div class="cart-shopping">
+                shopping after payment ,delivery item : 1 to 4 working 
+            </div>
+            <div class="cart-item">
+                <div class="p-grid">
+                    <div class="p-col-2 cart-item-image">
+                        <img src="https://www.verdict.co.uk/wp-content/uploads/2018/11/shutterstock_712915198-e1542045457155.jpg">
+                    </div>
+                    <div class="p-col-7" *ngFor="">
+                        <div class="cart-item-name">
+                            product name
+                        </div>
+                        <div class="cart-item-price">
+                            product price
+                        </div>
+                        <div class="cart-item quantity">
+                            product quantity
+                        </div>
+                        <div class="cart-item-delete">
+                            <button (click)="deleteCartItem()">delete</button>
+                        </div>
+                    </div>
+                   <div class="cart-item-subtotal">
+                       subtotal: 
+                       <span class="cart-itemsubtotal-value">{{200}}</span>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-4">order Summary</div>
+    </div>
+</div> -->
+<ng-container *ngIf="true">
+    <div class="container">
+    <div class="card-table">
+        <div class="cart-product">
+            <table class="table table-resposive">
+                <thead>
+                    <tr>
+                        <th>product id</th>
+                        <th>product name</th>
+                        <th>product image</th>
+                        <th>product quantity/th>
+                        <th>product price</th>
+                        <th>total</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor= "let item of product">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th><button class="btn btn-danger"><i class="fas fa-trash-alt">delete</i></button></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</ng-container>
+<ng-container *ngIf="false">
+<div class="container">
+    <div class="card">
+        <h5 class="card-title">my cart</h5>
+    </div>
+    <hr>
+    <div class="center">
+        <img src="https://brouwhoeve.es/wp-content/uploads/2022/02/istockphoto-1128262881-612x612-1.jpg" alt="image">
+        <h4>your cart is empty</h4>
+        <h6>Add item to it</h6>
+        <button class="btn btn-primary">Shop now</button>
+    </div>
+</div>
+</ng-container>

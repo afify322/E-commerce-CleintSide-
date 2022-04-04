@@ -10,20 +10,25 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                        <li class="scroll-to-section"><a routerLink="/home" class="active">Home</a></li>
                       
                         <li class="submenu">
                             <a href="javascript:;">Categories</a>
                             <ul>
-                                <li><a href="about.html">Men's</a></li>
-                                <li><a href="products.html">Women's</a></li>
-                                <li><a href="single-product.html">Kid's</a></li>
-                                <li><a href="contact.html">Accessories</a> </li>
+                                <li><a routerLink="/products" [queryParams]="{category: '62365f0d0e8f88a7d38d88d0'}">Men's</a></li>
+                                <li><a routerLink="/products" [queryParams]="{category: '62365f170e8f88a7d38d88d2'}">Women's</a></li>
+                                <li><a routerLink="/products" [queryParams]="{category: '62365f1d0e8f88a7d38d88d4'}">Kid's</a></li>
+                                <li><a  routerLink="/products" [queryParams]="{category: '62365f270e8f88a7d38d88d6'}">Accessories</a> </li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a href="#explore">Log in</a></li>
-                        <li class="scroll-to-section"><a href="#explore">Sign Up</a></li>
-                        <li class="scroll-to-section"> <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></li>
+                        <li class="scroll-to-section" *ngIf="isLoggedIn&&!isAdmin"><a routerLink="/user/profile">My Profile</a></li>
+                        <li class="scroll-to-section" *ngIf="isLoggedIn&&isAdmin"><a routerLink="/user/admin/users">Admin Dahboard</a></li>
+                        
+                        <li class="scroll-to-section"*ngIf="isLoggedIn" (click)="logout()"><a>Log Out</a></li>
+
+                        <li class="scroll-to-section"*ngIf="!isLoggedIn"><a routerLink="/auth/login">Log in</a></li>
+                        <li class="scroll-to-section"*ngIf="!isLoggedIn"><a routerLink="/auth/signup" href="#explore">Sign Up</a></li>
+                        <li class="scroll-to-section"> <i routerLink="/checkout" class="fa fa-cart-arrow-down" aria-hidden="true"></i></li>
 
 
                        

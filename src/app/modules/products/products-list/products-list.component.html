@@ -1,4 +1,4 @@
-<section class="section" id="kids">
+<section class="section" id="kids" *ngIf="dataBack">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -15,7 +15,7 @@
                 <div class="kid-item-carousel">
                     <div class="owl-kid-item products">
                         <div *ngFor="let product of products | paginate: { id: 'prodPag',
-                        itemsPerPage: 5,
+                        itemsPerPage: limit,
                         currentPage: page,
                         totalItems: totalProducts }">
                             <div class="item">
@@ -28,7 +28,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- <img src="/../assets/images/kid-01.jpg" alt=""> -->
+                                    
                                     <img [src]="product.image?product.image:'/../assets/images/kid-01.jpg'"  alt="">
 
                                 </div>
@@ -51,7 +51,7 @@
 
             </div>
             <div class="col-lg-12 d-flex justify-content-center mt-5">
-                <pagination-controls id="prodPag" (pageChange)="page = $event">
+                <pagination-controls id="prodPag" (pageChange)="pageChanged($event)" >
                 </pagination-controls>
 
 
@@ -59,3 +59,4 @@
         </div>
     </div>
 </section>
+<app-loading-spinner *ngIf="!dataBack"></app-loading-spinner>

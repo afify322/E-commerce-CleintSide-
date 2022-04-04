@@ -3,7 +3,12 @@
     <div class="title">
         <h2>Product Order Form</h2>
     </div>
+    <div>
+        <button class=" btn btn-primary" style="width: 100%; height: 50px;" (click)="removeCart()"> Remove Cart ?</button>
+
+    </div>
     <div class="d-flex">
+        
         <form action="" method="" [formGroup] = "ProductOrderForm">
             <label>
                 <span class="fname">Name <span class="required">*</span></span>
@@ -90,22 +95,24 @@
 
 
         </form>
+
+     
         <div class="Yorder">
             <table>
                 <tr>
                     <th colspan="2">Your order</th>
                 </tr>
-                <tr>
-                    <td>Items Price</td>
-                    <td>$88.00</td>
-                </tr>
-                <tr>
-                    <td>Shipping</td>
-                    <td>Free shipping</td>
-                </tr>
+                <ng-container *ngFor="let item of cartItems">
+
+                    <tr>
+                        <td>Name : {{item.name}}</td>
+                        <td>Price : ${{item.price}}</td>
+                        <td>quantity : {{item.quantity}}</td>
+                    </tr>
+                </ng-container>
                 <tr>
                     <td>Total Price</td>
-                    <td>$88.00</td>
+                    <td>${{totalPrice}}</td>
                 </tr>
 
             </table><br>

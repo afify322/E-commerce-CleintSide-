@@ -6,10 +6,13 @@
           <input class="form-control mr-2 w-50 p-3" type="search" placeholder="Search" aria-label="Search"
             [(ngModel)]="searchString" *ngIf="FilterBy!='price'&&FilterBy!='rating'">
             <div class="d-flex justify-content-center">
+
               <input class="form-control mr-2 w-3 p-3" type="search" placeholder="Min" aria-label="Search"
-              min="value" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+              [(ngModel)]="min" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+
             <input class="form-control mr-2 w-3 p-3" type="search" placeholder="Max" aria-label="Search"
-              max="value" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+              [(ngModel)]="max" *ngIf="FilterBy=='price'||FilterBy=='rating'">
+
           <button class="btn btn-outline-secondary" (click)="search()">Search</button>
 
             </div>

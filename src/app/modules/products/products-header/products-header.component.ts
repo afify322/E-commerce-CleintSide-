@@ -11,13 +11,13 @@ export class ProductsHeaderComponent implements OnInit {
   collectionID: string | null = " ";
   collectionName: string | null = " ";
   collectionImage: string | null = " ";
-  constructor(private x: ActivatedRoute, private httpClient: ProductsHttpClientService) {
+  constructor(private route: ActivatedRoute, private httpClient: ProductsHttpClientService) {
 
   }
 
   ngOnInit(): void {
-    this.x.queryParamMap.subscribe({
-      next: (v) => this.collectionID = v.get("category"),
+    this.route.queryParamMap.subscribe({
+      next: (r) => this.collectionID = r.get("category"),
     });
     this.httpClient.findCategoryById(this.collectionID).subscribe(data => {
       this.collectionName = data.category.name;

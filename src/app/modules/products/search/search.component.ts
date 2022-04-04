@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from '../product-class.model';
 import { ProductsHttpClientService } from '../products-http-client.service';
 
 @Component({
@@ -8,16 +8,20 @@ import { ProductsHttpClientService } from '../products-http-client.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-  @Output() searchEvent: EventEmitter<Array<any>> = new EventEmitter();
-
+export class SearchComponent implements OnChanges {
+  @Output() searchEvent: EventEmitter<any> = new EventEmitter();
+  @Output() searchSizeEvent:EventEmitter<number> = new EventEmitter();
+  searchSize:number=0;
+  @Input()pageFromList:number=1;
   @Input() searchString: string|null = "";
-  @Input() max: string|null = "6";
-  @Input() min: string|null = "0";
-  searchedProducts:any[] = [];
+  @Input() max: string|null = "max";
+  @Input() min: string|null = "min";
+  searchedProducts: Product[] = [];
   searchStringQuery:string|null = " ";
   FilterBy:string|null = "name";
-  constructor(private x: ActivatedRoute, private httpClient: ProductsHttpClientService) {
+  collectionID:string|null=''
+  pageFromSearch:number|null=1;
+  constructor( private route: ActivatedRoute,private httpClient: ProductsHttpClientService) {
     
   }
 
@@ -25,24 +29,43 @@ export class SearchComponent implements OnInit {
 
 
   }
-  search() {
-    if(this.FilterBy=="price" && this.max=="6"){this.max="1000"}
-    if(this.FilterBy=="rating"||this.FilterBy=="price"){
-    this.searchStringQuery="?"+this.FilterBy+"Max"+"="+this.max+"&"+this.FilterBy+"Min"+"="+this.min;
-    console.log(this.searchStringQuery);
+  ngOnChanges(){
+    console.log(this.pageFromList+"page from list in search");
     
+    if(this.pageFromList!=1){
+      this.httpClient.productSearch(this.searchStringQuery,this.collectionID,this.pageFromList,5).subscribe((data: any) => {this.searchedProducts = data;
+        this.searchEvent.emit(this.searchedProducts);
+      }); 
+    }
+  }
+  search() {
+    this.pageFromSearch=1;
+    console.log(this.pageFromSearch);
+    
+    if(this.FilterBy=="rating"||this.FilterBy=="price"){
+    if(this.min=="min" && this.max=="max"){this.max="1000"; this.min="0"}
+    this.searchStringQuery="?"+this.FilterBy+"Max"+"="+this.max+"&"+this.FilterBy+"Min"+"="+this.min;
+
+    // this.max="max"
+    // this.min="min"
     }
     else{
     this.searchStringQuery="?"+this.FilterBy+"="+this.searchString;
+
     }
-    this.httpClient.productSearch(this.searchStringQuery).subscribe((data: any) => {this.searchedProducts = data.products;
-      this.searchEvent.emit(this.searchedProducts);});
-    
+    this.route.queryParamMap.subscribe({
+      next: (r) => this.collectionID = r.get("category"),
+    });
+    this.httpClient.productSearch(this.searchStringQuery,this.collectionID,1,6).subscribe((data: any) => {this.searchedProducts = data;
+      
+      this.searchSize=data.size;
+      this.searchEvent.emit(this.searchedProducts);
+      this.searchSizeEvent.emit(this.searchSize);     
+    }); 
   }
   updateFilterBy(by:string){
-    this.max="0"
-    this.min="0"
-    console.log(by);
+    this.max="max"
+    this.min="min"
     this.FilterBy=by;
   }
 

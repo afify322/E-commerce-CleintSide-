@@ -14,14 +14,14 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="left-images">
-                        <img [src]="product.image?product.image:'/../assets/images/kid-01.jpg'" alt="">
+                        <img [src]="product?.image?product?.image:'/../assets/images/kid-01.jpg'" alt="">
                         <!-- <img [src]="product.image?product.image:'/../assets/images/kid-01.jpg'" alt=""> -->
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="right-content">
-                        <h4>{{product.name}}</h4>
-                        <span class="price">${{product.price}}</span>
+                        <h4>{{product?.name}}</h4>
+                        <span class="price">${{product?.price}}</span>
                         <ul class="stars">
                             <li><i class="fa fa-star"></i></li>
                             <li><i class="fa fa-star"></i></li>
@@ -32,7 +32,7 @@
                         
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <p>{{product.description}}</p>
+                            <p>{{product?.description}}</p>
                         </div>
                         <div class="quantity-content">
                             <div class="left-content">
@@ -40,15 +40,15 @@
                             </div>
                             <div class="right-content">
                                 <div class="quantity buttons_added">
-                                    <input type="button" value="-" (click)="quantityMinus" class="minus"><input type="number" step="1" min="1"
+                                    <button type="button" value="-" (click)="quantityMinus()" class="minus">-</button><input type="number" step="1" min="1"
                                         max="" name="quantity" [(ngModel)]="quantity" title="Qty" class="input-text qty text"
-                                        size="4" pattern="" inputmode=""><input type="button" value="+" (click)="quantityPlus" class="plus">
+                                        size="4" pattern="" inputmode=""><button type="button" value="+" (click)="quantityPlus()" class="plus ">+</button>
                                 </div>
                             </div>
                         </div>
                         <div class="total">
-                            <h4>{{product.price}}</h4>
-                            <div class="main-border-button"><a href="#">Add To Cart</a></div>
+                            <h4>{{product?.price}}</h4>
+                            <div class="main-border-button "><button class="btn btn-dark" (click)="addProductToCart(product)">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>

@@ -9,14 +9,9 @@ import { ThankYouComponent } from './components/Thank-You/thank-you.component';
 import { CheckoutPageComponent } from './components/checkOut/checkout-page.component';
 import { shoppingRouting } from './shopping-routing.module';
 import { Route, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../core/auth-guard.service';
 
-const routes: Route[] = [
-  { path:'ThankYou', component: ThankYouComponent },
-  {
-      path:'', component:ThankYouComponent
-  },
- // { path:'ThankYou', component: ThankYouComponent },
-]
+
 
 @NgModule({
   declarations: [
@@ -35,7 +30,7 @@ const routes: Route[] = [
     ReactiveFormsModule,
     HttpClientModule,
     shoppingRouting,
-    RouterModule.forChild(routes),
+
 
   ],
  

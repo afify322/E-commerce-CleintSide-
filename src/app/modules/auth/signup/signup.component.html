@@ -1,1 +1,44 @@
-<p>signup works!</p>
+<div class="card">
+    <form [formGroup]="profileForm">
+        
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"/>
+        </div>
+        <div class="mb-3">
+            <label for="Name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="Name" formControlName="name"/>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">phone</label>
+            <input type="text" class="form-control" id="mobile" formControlName="phone"/>
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"/>
+        </div>
+        <div class="mb-3">
+          <label for="Street" class="form-label">Street</label>
+          <input type="text" class="form-control" id="Street" formControlName="street"/>
+        </div>
+        <div class="mb-3">
+          <label for="apartment" class="form-label">apartment</label>
+          <input type="text" class="form-control" id="apartment" formControlName="apartment"/>
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city"/>
+        </div>
+        <div class="mb-3">
+          <label for="county" class="form-label">County</label>
+          <input type="text" class="form-control" id="county" formControlName="country"/>
+        </div>
+        <div class="mb-3">
+          <label for="zip" class="form-label">Zip</label>
+          <input type="number" class="form-control" id="zip" formControlName="zip"/>
+        </div>
+     
+        <button type="submit" class="btn btn-primary mb-2" (click)="onSubmit()" [disabled]="!profileForm.valid">create</button>
+      </form>
+      <a style="color: #fff; margin-top: 10px;" routerLink="/auth/login">already have account? click here for log in</a>
+    </div>

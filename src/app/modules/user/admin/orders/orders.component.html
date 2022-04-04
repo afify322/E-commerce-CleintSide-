@@ -1,0 +1,59 @@
+<div class="mat-elevation- m-3">
+    <table mat-table [dataSource]="dataSource">
+  
+        <ng-container matColumnDef="User Name">
+            <th mat-header-cell *matHeaderCellDef> User Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.userId.name}} </td>
+          </ng-container>
+
+      <ng-container matColumnDef="Order Items">
+        <th mat-header-cell *matHeaderCellDef> Products </th>
+        <td mat-cell *matCellDef="let element">
+            <ul>
+                <ng-container  *ngFor="let orderItem of element.orderItems">
+                    <li>{{orderItem.product.name}}</li>
+                </ng-container> 
+            </ul>
+         </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element" [ngStyle]="{'background-color':element.status ==='pending' ? 'yellow' : 'green'}"> {{element.status}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Shipping Address">
+        <th mat-header-cell *matHeaderCellDef> Shipping Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.shippingAddress1}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Total Price">
+        <th mat-header-cell *matHeaderCellDef> Total Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Cancel">
+        <th mat-header-cell *matHeaderCellDef> Cancel Order </th>
+        <td mat-cell *matCellDef="let element"><button class="btn btn-warning" (click)="cancelOrder(element._id)">Cancel</button>   </td>
+      </ng-container>
+      <ng-container matColumnDef="Confirm">
+        <th mat-header-cell *matHeaderCellDef> Confirm Order </th>
+        <td mat-cell *matCellDef="let element"> <button class="btn btn-success" (click)="confirmOrder(element._id)">Confirm</button> </td>
+      </ng-container>
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef> Delete Order </th>
+        <td mat-cell *matCellDef="let element"> <button class="btn btn-danger" (click)="deleteOrder(element._id)">Delete</button> </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  

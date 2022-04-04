@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/auth.service';
 import { Cart, CartItem } from '../../Models/cart';
 import { Order } from '../../Models/order';
 import { OrderItem } from '../../Models/order-item';
-import { CartService } from '../../services/cart.service';
+import { cartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -18,8 +19,8 @@ export class PaymentComponentComponent implements OnInit {
   countries: any = ['Egypt', 'America', 'Tennessee', 'Brazil', 'Australia', 'Canada'];
   totalPrice: any;
   cartItems :any;
-  userId = '6234b1d08b1c0e34977db2ae';
-  cart: Cart = new Cart;
+  userId = '6247b73b51cb65acfee9f99f';
+  cart!: [CartItem];
 
 
   ProductOrderForm: FormGroup = new FormGroup({
@@ -34,22 +35,27 @@ export class PaymentComponentComponent implements OnInit {
 
   });
 
-  constructor(private cartService: CartService,  private ordersService: OrdersService, private router: Router,) { }
+  constructor(private cartService: cartService,  private ordersService: OrdersService, private router: Router,private auth:AuthService) { }
 
   ngOnInit() {
 
-    this.cart= this.cartService.getCart();
-    this.cartItems = this.cart.items;
+    this.cartItems= this.cartService.getCart();
+    this.totalPrice=this.cartItems.reduce((a: { price: any; },b: { price: any; })=>{
+      return +a.price + +b.price
+    })
+    
 
   }
 
 
 
   sumbitOrder() {
-    // this.router.navigate(['/ThankYou']);
 
+    if(!this.auth.isLoggedIn()){
+      this.router.navigate(['/auth/login']);
+      return;
+    }
     if (!this.ProductOrderForm.valid) { return };
-    console.log(this.ProductOrderForm.value);
     const order: Order = {
       orderItems: this.cartItems,
       shippingAddress1: this.ProductOrderForm.value.Address1,
@@ -59,20 +65,25 @@ export class PaymentComponentComponent implements OnInit {
       country: this.ProductOrderForm.value.Country,
       phone: this.ProductOrderForm.value.phone,
       status: "pending",
-      totalPrice:200,
-      userId: this.userId,
+      userId: localStorage.getItem("user"),
     };
 
-
+    console.log(order)
     this.ordersService.createOrder(order).subscribe({
       next: (response) => {
         console.log(response)
+        localStorage.removeItem("cart");
         this.router.navigate(['/checkout/ThankYou']);
       },
       error: (err) => {console.log(err)}
     });
  
 
+  }
+
+  removeCart(){
+    localStorage.removeItem("cart");
+    this.router.navigate(['/home']);
   }
 
 }
