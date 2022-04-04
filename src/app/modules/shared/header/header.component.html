@@ -24,11 +24,11 @@
                         <li class="scroll-to-section" *ngIf="isLoggedIn&&!isAdmin"><a routerLink="/user/profile">My Profile</a></li>
                         <li class="scroll-to-section" *ngIf="isLoggedIn&&isAdmin"><a routerLink="/user/admin/users">Admin Dahboard</a></li>
                         
-                        <li class="scroll-to-section"*ngIf="isLoggedIn" (click)="logout()"><a>Log Out</a></li>
+                        <li class="scroll-to-section"*ngIf="isLoggedIn" style="cursor: pointer;" (click)="logout()"><a>Log Out</a></li>
 
                         <li class="scroll-to-section"*ngIf="!isLoggedIn"><a routerLink="/auth/login">Log in</a></li>
-                        <li class="scroll-to-section"*ngIf="!isLoggedIn"><a routerLink="/auth/signup" href="#explore">Sign Up</a></li>
-                        <li class="scroll-to-section"> <i routerLink="/checkout" class="fa fa-cart-arrow-down" aria-hidden="true"></i></li>
+                        <li class="scroll-to-section"*ngIf="!isLoggedIn"><a routerLink="/auth/signup" >Sign Up</a></li>
+                        <li class="scroll-to-section"*ngIf="isLoggedIn"> <i routerLink="/checkout" class="fa fa-cart-arrow-down" aria-hidden="true"></i></li>
 
 
                        

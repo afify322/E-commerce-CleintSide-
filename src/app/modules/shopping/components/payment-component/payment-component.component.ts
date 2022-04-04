@@ -40,9 +40,19 @@ export class PaymentComponentComponent implements OnInit {
   ngOnInit() {
 
     this.cartItems= this.cartService.getCart();
-    this.totalPrice=this.cartItems.reduce((a: { price: any; },b: { price: any; })=>{
+   if(this.cartItems.length!=1){
+
+     this.totalPrice=this.cartItems.reduce((a: { price: any; },b: { price: any; })=>{
+       return +a.price + +b.price
+   });
+   }else{
+     this.totalPrice=this.cartItems.reduce((a: { price: any; },b: { price: any; })=>{
       return +a.price + +b.price
-    })
+   }).price;
+   console.log(this.totalPrice);
+   
+  }
+    
     
 
   }
@@ -68,10 +78,8 @@ export class PaymentComponentComponent implements OnInit {
       userId: localStorage.getItem("user"),
     };
 
-    console.log(order)
     this.ordersService.createOrder(order).subscribe({
       next: (response) => {
-        console.log(response)
         localStorage.removeItem("cart");
         this.router.navigate(['/checkout/ThankYou']);
       },

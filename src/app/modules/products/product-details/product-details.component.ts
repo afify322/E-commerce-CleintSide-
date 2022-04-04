@@ -5,6 +5,7 @@ import { Product } from '../product-class.model';
 import { ProductsHttpClientService } from '../products-http-client.service';
 import { CartItem } from '../../shopping/Models/cart';
 import { cartService } from '../../shopping/services/cart.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   public quantity: number = 0 
   cart:any;
 
-  constructor(private route: ActivatedRoute, private httpClient: ProductsHttpClientService,private cartService: cartService) {
+  constructor(private route: ActivatedRoute, private httpClient: ProductsHttpClientService,private cartService: cartService,private modal:NgxSmartModalService) {
     this.productId = this.route.snapshot.paramMap.get("id");
     this.httpClient.getProductById(this.productId).subscribe((data: any) => this.product = data.product);
   }
@@ -49,10 +50,15 @@ export class ProductDetailsComponent implements OnInit {
         price: this.product!.price * this.quantity,
         name: this.product?.name
       }
-      this.cartService.setCartItem(cartItem)
+      this.cartService.setCartItem(cartItem);
+      this.modal.open("modal");
     }
     else {
       window.alert('if you want to add to cart .. your quantity must be more than 0')
     }
+  }
+
+  close(){
+    this.modal.close("modal");
   }
 }

@@ -15,3 +15,6 @@ img{
 #prodPag /deep/ .ngx-pagination {
     font-weight: bold !important;
 }
+.fa-star{
+    cursor: pointer;
+}

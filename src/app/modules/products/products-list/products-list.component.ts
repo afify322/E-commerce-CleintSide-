@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Product } from '../product-class.model';
 import { ProductsHttpClientService } from '../products-http-client.service';
 
@@ -26,7 +27,7 @@ export class ProductsListComponent implements OnInit {
   // @Output() dataBackevent:EventEmitter<boolean> = new EventEmitter();
  @Output() pageToSearchEvent:EventEmitter<number> = new EventEmitter();
 
-  constructor(private router: ActivatedRoute, private httpClient: ProductsHttpClientService) {
+  constructor(private router: ActivatedRoute, private httpClient: ProductsHttpClientService,private modal:NgxSmartModalService) {
 
   }
 
@@ -80,6 +81,14 @@ export class ProductsListComponent implements OnInit {
     }
 
   }
+  addFavourite(id:any){
+    this.httpClient.addFavourite(id).subscribe({next:(data)=>{
+      this.modal.open("modal");
+    }})
+  }
+  close(){
+    this.modal.close("modal");
+    }
 }
 
 

@@ -28,4 +28,9 @@ console.log(limit,page);
   findCategoryById(id:string|null){
     return this.http.get<any>(this.url+ "/category/" + id);
   }
+  addFavourite(id:string){
+    let user=localStorage.getItem("user");
+    let body={productId:id, userId:user}
+return this.http.post(this.url+"/user/addFavourite",body);
+  }
 }

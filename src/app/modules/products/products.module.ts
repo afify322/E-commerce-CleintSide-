@@ -12,6 +12,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -31,6 +33,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     NgxPaginationModule,
     FormsModule,
     HttpClientModule,
+    NgxSmartModalModule.forChild(),
+    MatButtonModule
 
   ],
   providers:[ProductsHttpClientService,HttpClient]
