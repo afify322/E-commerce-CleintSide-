@@ -1,18 +1,21 @@
 <div class="card">
-    <form [formGroup]="login">
-    
-           <span style="color: red;"> {{error}}</span>
-      
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
-        </div>
-     
-        <button type="submit" class="btn btn-primary" (click)="loginSubmit()"[disabled]="!login.valid">log in</button>
-      </form>
-      <a style="color: #fff; margin-top: 10px;"  routerLink="/auth/signup">new user? click here for sign up</a>
+  <h1 class="head">Sign In</h1>
+  <form [formGroup]="login">
+
+    <span style="color: red;"> {{error}}</span>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
     </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+    </div>
+
+    <button type="submit" style="width: 100%;" class="btn btn-primary" (click)="loginSubmit()"
+      [disabled]="!login.valid">log in</button>
+  </form>
+  <a style="color: #fff; margin-top: 10px; font-size: 20px;" routerLink="/auth/signup">new user ?<span
+      style="color:rgb(157, 157, 231); margin-left: 25px; font-weight: bold;"> click here for sign up</span></a>
+</div>

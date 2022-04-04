@@ -1,44 +1,93 @@
 <div class="card">
+  <h1 class="head">Sign Up</h1>
     <form [formGroup]="profileForm">
         
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('email')?.invalid && profileForm.get('email')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('email')?.hasError('required')">Email is required</span>
+              <span class = "error-message-span" *ngIf="profileForm.get('email')?.hasError('pattern')">Please enter valid email</span>
+          </div>
         </div>
         <div class="mb-3">
             <label for="Name" class="form-label">Name</label>
             <input type="text" class="form-control" id="Name" formControlName="name"/>
+            <div class="error-message" *ngIf="
+            profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+            ">
+                <span  class = "error-message-span" *ngIf="profileForm.get('name')?.hasError('required')">Name is required</span>
+            </div>
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">phone</label>
             <input type="text" class="form-control" id="mobile" formControlName="phone"/>
+            <div class="error-message" *ngIf="
+            profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched
+            ">
+                <span  class = "error-message-span" *ngIf="profileForm.get('phone')?.hasError('required')">phone is required</span>
+            </div>
+
+
           </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('password')?.invalid && profileForm.get('password')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('password')?.hasError('required')">password is required</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="Street" class="form-label">Street</label>
           <input type="text" class="form-control" id="Street" formControlName="street"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('street')?.invalid && profileForm.get('street')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('street')?.hasError('required')">street is required</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="apartment" class="form-label">apartment</label>
           <input type="text" class="form-control" id="apartment" formControlName="apartment"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('apartment')?.invalid && profileForm.get('apartment')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('apartment')?.hasError('required')">apartment is required</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="city" class="form-label">City</label>
           <input type="text" class="form-control" id="city" formControlName="city"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('city')?.invalid && profileForm.get('city')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('city')?.hasError('required')">city is required</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="county" class="form-label">County</label>
           <input type="text" class="form-control" id="county" formControlName="country"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('country')?.invalid && profileForm.get('country')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('country')?.hasError('required')">country is required</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="zip" class="form-label">Zip</label>
           <input type="number" class="form-control" id="zip" formControlName="zip"/>
+          <div class="error-message" *ngIf="
+          profileForm.get('zip')?.invalid && profileForm.get('zip')?.touched
+          ">
+              <span  class = "error-message-span" *ngIf="profileForm.get('zip')?.hasError('required')">zip is required</span>
+          </div>
         </div>
      
-        <button type="submit" class="btn btn-primary mb-2" (click)="onSubmit()" [disabled]="!profileForm.valid">create</button>
+        <button type="submit" class="btn btn-primary mb-2 " style="width: 100%;" (click)="onSubmit()" [disabled]="!profileForm.valid">create</button>
       </form>
-      <a style="color: #fff; margin-top: 10px;" routerLink="/auth/login">already have account? click here for log in</a>
+      <a  style="color: #fff; margin-top: 10px; font-size: 20px;" routerLink="/auth/login">Already a member ? <span style="color:rgb(157, 157, 231); margin-left: 25px; font-weight: bold;">Login</span></a>
     </div>
