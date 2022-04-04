@@ -25,7 +25,10 @@ export class AuthService {
     );
 }
 logout(){
-  localStorage.clear();
+  localStorage.remove('token')
+  localStorage.remove('user')
+  localStorage.remove('cart')
+  
   this.router.navigate(["/home"]);
 }
 isLoggedIn(){
