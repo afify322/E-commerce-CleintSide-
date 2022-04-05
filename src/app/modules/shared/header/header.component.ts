@@ -16,6 +16,7 @@ isLoggedIn:boolean=false;
   ngOnInit(): void {
     this.isAdmin=this.auth.isAdmin();
     this.isLoggedIn=this.auth.isLoggedIn();
+    localStorage.removeItem
   }
   logout(){
   this.auth.logout();

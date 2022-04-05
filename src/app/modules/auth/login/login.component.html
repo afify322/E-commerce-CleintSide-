@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="!loading" class="card">
   <h1 class="head">Sign In</h1>
   <form [formGroup]="login">
 
@@ -19,3 +19,5 @@
   <a style="color: #fff; margin-top: 10px; font-size: 20px;" routerLink="/auth/signup">new user ?<span
       style="color:rgb(157, 157, 231); margin-left: 25px; font-weight: bold;"> click here for sign up</span></a>
 </div>
+
+<app-spinner *ngIf="loading"></app-spinner>

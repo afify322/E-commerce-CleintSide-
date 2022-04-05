@@ -41,14 +41,13 @@ export class AdminService {
     return this.http.get(this.ProductsUri+"/"+id)
   }
    updateProduct(id:string,body:any){
+     delete body.image;
      return this.http.patch(this.ProductsUri+"/"+id,body);
    }
    deleteProduct(id:string){
      return this.http.delete(this.ProductsUri+"/"+id)
    }
    addproduct(body:FormData){
-
-
      return this.http.post(this.url+"/products",body)
    }
    getCategories(){

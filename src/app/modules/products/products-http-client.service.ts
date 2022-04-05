@@ -14,7 +14,6 @@ export class ProductsHttpClientService {
   }
   
   findProductByCategory(id: string | null,page:any,limit:any){
-console.log(limit,page);
 
     return this.http.get<any>(this.url + "/products/category/" + id+"?"+"page="+page+"&limit="+limit);
     // return this.http.get<any>(this.url +"/products/category/62365f0d0e8f88a7d38d88d0?limit=8&page=2");
@@ -32,5 +31,9 @@ console.log(limit,page);
     let user=localStorage.getItem("user");
     let body={productId:id, userId:user}
 return this.http.post(this.url+"/user/addFavourite",body);
+  }
+  getFavourite(){
+    let user=localStorage.getItem("user");
+return this.http.get(this.url+"/user/"+user);
   }
 }

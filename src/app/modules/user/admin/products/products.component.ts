@@ -68,7 +68,7 @@ export class ProductsComponent implements OnInit {
 let {name,description,price,countInStock,rating,category}=data.product;
 
 
-        this.AddProductForm.setValue({'name':name,'description':description,'price':price,'countInStock':countInStock,'rating':rating,'category':category,'isFeatured':true});
+        this.AddProductForm.setValue({'name':name,'description':description,'price':price,'countInStock':countInStock,'rating':rating,'category':category,'isFeatured':true,'image':'TEST'});
 
     },
   error:(err)=>{

@@ -30,7 +30,6 @@ export class SearchComponent implements OnChanges {
 
   }
   ngOnChanges(){
-    console.log(this.pageFromList+"page from list in search");
     
     if(this.pageFromList!=1){
       this.httpClient.productSearch(this.searchStringQuery,this.collectionID,this.pageFromList,5).subscribe((data: any) => {this.searchedProducts = data;
@@ -40,7 +39,6 @@ export class SearchComponent implements OnChanges {
   }
   search() {
     this.pageFromSearch=1;
-    console.log(this.pageFromSearch);
     
     if(this.FilterBy=="rating"||this.FilterBy=="price"){
     if(this.min=="min" && this.max=="max"){this.max="1000"; this.min="0"}

@@ -8,6 +8,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -18,7 +19,8 @@ import { RouterModule } from '@angular/router';
     PreviewCartComponent,
     ModalComponent,
     LoadingSpinnerComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { RouterModule } from '@angular/router';
     PreviewCartComponent,
     ModalComponent,
     LoadingSpinnerComponent,
+    SpinnerComponent
     
   ],
   providers:[]

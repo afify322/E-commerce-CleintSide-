@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { exhaustMap } from 'rxjs';
 import { Product } from '../product-class.model';
 import { ProductsHttpClientService } from '../products-http-client.service';
 
@@ -82,8 +83,18 @@ export class ProductsListComponent implements OnInit {
 
   }
   addFavourite(id:any){
-    this.httpClient.addFavourite(id).subscribe({next:(data)=>{
+    
+    this.httpClient.getFavourite().subscribe({next:(data:any)=>{
+      var exist = data.user.favourite.find((x:any)=>x._id==id);      
+      if(!exist){
+
+        this.httpClient.addFavourite(id).subscribe({next:(data)=>{
+          this.modal.open("modal");
+        }});
+      }
       this.modal.open("modal");
+
+
     }})
   }
   close(){

@@ -3,7 +3,7 @@
   
         <ng-container matColumnDef="User Name">
             <th mat-header-cell *matHeaderCellDef> User Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.userId.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{element?.userId?.name}} </td>
           </ng-container>
 
       <ng-container matColumnDef="Order Items">
@@ -11,7 +11,7 @@
         <td mat-cell *matCellDef="let element">
             <ul>
                 <ng-container  *ngFor="let orderItem of element.orderItems">
-                    <li>{{orderItem.product.name}}</li>
+                    <li>{{orderItem?.product?.name}}</li>
                 </ng-container> 
             </ul>
          </td>

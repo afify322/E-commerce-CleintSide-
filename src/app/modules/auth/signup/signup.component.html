@@ -1,7 +1,9 @@
-<div class="card">
+<div *ngIf="!loading" class="card">
   <h1 class="head">Sign Up</h1>
     <form [formGroup]="profileForm">
-        
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+       {{error}}
+      </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"/>
@@ -91,3 +93,5 @@
       </form>
       <a  style="color: #fff; margin-top: 10px; font-size: 20px;" routerLink="/auth/login">Already a member ? <span style="color:rgb(157, 157, 231); margin-left: 25px; font-weight: bold;">Login</span></a>
     </div>
+
+    <app-spinner *ngIf="loading"></app-spinner>

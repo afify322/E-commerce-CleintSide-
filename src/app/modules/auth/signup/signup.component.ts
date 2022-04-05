@@ -10,8 +10,9 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+  loading:Boolean=false;
   profileForm:any = FormGroup;
+  error:string="";
   constructor(private fb : FormBuilder , private router : Router , private service : AuthService){
 
   }
@@ -28,16 +29,16 @@ export class SignupComponent implements OnInit {
       street : ['',Validators.required]
     })
   }
-
- error :any;
   onSubmit(){
+    this.loading=true;
     if(this.profileForm.status=== 'VALID'){
-      console.log(this.profileForm)
       this.service.signUp(this.profileForm.value).subscribe({next:(data:any)=>{
         localStorage.setItem("token" , data.token);
         this.router.navigate(['/auth/login']);
       }, error : (data:any)=>{
-        console.log(data);
+       this.loading=false;
+       
+       this.error=data.error.error;
       }});
 
     }}
