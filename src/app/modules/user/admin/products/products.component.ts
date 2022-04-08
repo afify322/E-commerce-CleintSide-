@@ -5,6 +5,7 @@ import { Product } from '../orders/orders.model';
 import {  NgxSmartModalService } from 'ngx-smart-modal';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { tap } from 'rxjs';
 
 
 @Component({
@@ -21,11 +22,13 @@ export class ProductsComponent implements OnInit,OnDestroy,AfterViewInit {
   editProduct:string="";
   errors:any;
   deleteID:string='';
+  length!:number;
+  searchData:string='';
   
   constructor(private adminService:AdminService,private modal:NgxSmartModalService) { }
   ngAfterViewInit(): void {
-    this.paginator.nextPage
-  }
+    this.paginator.page.pipe(tap(()=>this.nextPage())).subscribe();
+    }
   ngOnDestroy(): void {
     //this.adminService.searchSubject.unsubscribe();
   }
@@ -48,12 +51,15 @@ export class ProductsComponent implements OnInit,OnDestroy,AfterViewInit {
   })
   ngOnInit(): void {
     this.adminService.searchSubject.subscribe({
-      next:(data)=>{
-        this.adminService.getProducts(data ||'').subscribe({
+      next:(Param)=>{
+        this.adminService.getProducts(Param ||'',1).subscribe({
           next:(data:any)=>{ console.log(data);
+            this.length=data.size;
           
+            
             this.dataSource=new MatTableDataSource<Product>(data.products);
             this.dataSource._updateChangeSubscription();
+            this.searchData=Param;
           },
           error:(err)=>{
               
@@ -198,8 +204,8 @@ let {name,description,price,countInStock,rating,category}=data.product;
 
   ngOnChanges(){
     
-    this.adminService.getProducts('').subscribe({
-      next:(data:any)=>{ console.log(data);
+    this.adminService.getProducts('',this.paginator.pageIndex).subscribe({
+      next:(data:any)=>{ 
       
         this.dataSource=new MatTableDataSource<Product>(data.products);
       },
@@ -214,4 +220,12 @@ let {name,description,price,countInStock,rating,category}=data.product;
     }
 
   }
+  nextPage(){
+    this.adminService.getProducts(this.searchData, (+this.paginator.pageIndex+1)).subscribe({next:(data:any)=>{
+      this.dataSource=new MatTableDataSource<Product>(data.products);
+      this.dataSource._updateChangeSubscription();
+    }})
+    
+  }
+
 }

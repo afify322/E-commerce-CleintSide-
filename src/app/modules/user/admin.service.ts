@@ -17,11 +17,10 @@ export class AdminService {
 
 
   getUsers(page:number|null,limit:number|null,name:any){
-    return this.http.get<any>(this.url + "/user"+"?page="+page+"&limit="+limit+"&name="+name);
+    return this.http.get<any>(this.url + "/user"+"?page="+1+"&limit="+20+"&name="+name);
   }
   deleteUser(id:string){
-    console.log("serv Delete");
-    console.log(id);
+ 
     
     return this.http.delete<any>(this.url + "/user/" + id);
 
@@ -35,8 +34,10 @@ export class AdminService {
   deleteOrder(id:string){
     return this.http.delete(this.OrdersUri+id)
   }
-  getProducts(search:any){
-    return this.http.get(this.ProductsUri+`/?name=${search}`);
+  getProducts(search:any,page:number|1){
+    console.log({search,page});
+    
+    return this.http.get(this.ProductsUri+`/?name=${search}&limit=10&page=${page}`);
    }
    getProductById(id:string){
     return this.http.get(this.ProductsUri+"/"+id)

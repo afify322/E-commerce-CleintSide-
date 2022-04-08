@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { OrderItem } from 'src/app/modules/shopping/Models/order-item';
 import { OrdersService } from 'src/app/modules/shopping/services/orders.service';
 import { AdminService } from '../../admin.service';
@@ -6,6 +6,7 @@ import { status } from '../orders/orders.model';
 import { MatTableDataSource } from "@angular/material/table";
 import { Order } from 'src/app/modules/shopping/Models/order';
 import { MatPaginator } from '@angular/material/paginator';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
@@ -17,7 +18,9 @@ export class OrdersComponent implements OnInit,OnChanges {
   orders:Order[] | undefined;
   orderItems:OrderItem[]|any;
   dataSource:any;
+  
   constructor(private adminService:AdminService) { }
+ 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
