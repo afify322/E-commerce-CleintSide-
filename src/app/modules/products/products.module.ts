@@ -18,6 +18,10 @@ import { RouterModule } from '@angular/router';
 
 
 
+
+
+
+
 @NgModule({
   declarations: [
     ProductsListComponent,
@@ -35,7 +39,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     HttpClientModule,
     NgxSmartModalModule.forChild(),
-    MatButtonModule
+    MatButtonModule,
+   
 
   ],
   providers:[ProductsHttpClientService,HttpClient]

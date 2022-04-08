@@ -12,6 +12,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { CategoryNavComponent } from './category-nav/category-nav.component';
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from "@angular/material/chips";
+import { NewSpinnerComponent } from './new-spinner/new-spinner.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatChipsModule } from "@angular/material/chips";
     LoadingSpinnerComponent,
     ErrorPageComponent,
     SpinnerComponent,
-    CategoryNavComponent
+    CategoryNavComponent,
+    NewSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { MatChipsModule } from "@angular/material/chips";
     ModalComponent,
     LoadingSpinnerComponent,
     SpinnerComponent,
-    CategoryNavComponent
+    CategoryNavComponent,
+    NewSpinnerComponent
     
   ],
   providers:[]
