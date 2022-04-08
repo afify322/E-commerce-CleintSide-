@@ -13,6 +13,8 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
+  dataBack: boolean = false
+
   public product?: Product;
   public productId: string | null = " ";
   public quantity: number = 0 
@@ -20,7 +22,9 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private httpClient: ProductsHttpClientService,private cartService: cartService,private modal:NgxSmartModalService) {
     this.productId = this.route.snapshot.paramMap.get("id");
-    this.httpClient.getProductById(this.productId).subscribe((data: any) => this.product = data.product);
+    this.httpClient.getProductById(this.productId).subscribe((data: any) => {this.product = data.product
+  this.dataBack=true;
+});
   }
 
   ngOnInit(): void {
