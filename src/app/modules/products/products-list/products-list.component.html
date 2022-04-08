@@ -17,7 +17,7 @@
                         <div *ngFor="let product of products | paginate: { id: 'prodPag',
                         itemsPerPage: limit,
                         currentPage: page,
-                        totalItems: totalProducts }">
+                        totalItems: totalProducts } let i=index;">
                             <div class="item">
                                 <div class="thumb">
                                     <div class="hover-content">
@@ -39,13 +39,8 @@
                                 <div class="down-content">
                                     <h4>{{product.name}}</h4>
                                     <span>{{product.price}}$</span>
-                                    <ul class="stars">
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                                
+                                     
                                 </div>
                             </div>
                         </div>
