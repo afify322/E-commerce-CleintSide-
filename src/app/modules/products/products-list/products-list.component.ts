@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges,AfterContentChecked,AfterViewInit,AfterViewChecked } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { exhaustMap } from 'rxjs';
 import { Product } from '../product-class.model';
@@ -11,7 +11,7 @@ import { ProductsHttpClientService } from '../products-http-client.service';
   styleUrls: ['./products-list.component.css']
 
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit,OnChanges ,AfterViewChecked{
   collectionID: string | null = "";
   collectionName: string = "";
 
@@ -28,11 +28,17 @@ export class ProductsListComponent implements OnInit {
   // @Output() dataBackevent:EventEmitter<boolean> = new EventEmitter();
  @Output() pageToSearchEvent:EventEmitter<number> = new EventEmitter();
 
-  constructor(private router: ActivatedRoute, private httpClient: ProductsHttpClientService,private modal:NgxSmartModalService) {
+  constructor(private router: ActivatedRoute,private routes:Router, private httpClient: ProductsHttpClientService,private modal:NgxSmartModalService) {
 
   }
+  ngAfterViewChecked(): void {
+    console.log("move");
+  }
+
 
   ngOnInit(): void {
+    console.log("chane");
+    this.routes.routeReuseStrategy.shouldReuseRoute = () => false;
 
     this.router.queryParamMap.subscribe
     ({
@@ -55,12 +61,13 @@ export class ProductsListComponent implements OnInit {
 
   }
   ngOnChanges(): void {
-    console.log(this.page +"in list to update to one");
-    this.searchedProducts=this.searchedProductsobj.products;
+    console.log("chane");
+
+    this.searchedProducts=this.searchedProductsobj?.products;
       this.products = this.searchedProducts;
-      this.page=this.searchedProductsobj.page
+      this.page=this.searchedProductsobj?.page
       
-      this.totalProducts = this.searchedProductsobj.size;
+      this.totalProducts = this.searchedProductsobj?.size;
   }
   pageChanged(event: any) {
     this.page = event;

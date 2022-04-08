@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild,OnDestroy,AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { AdminService } from '../../admin.service';
 import { Product } from '../orders/orders.model';
@@ -12,17 +12,30 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit,OnDestroy,AfterViewInit {
 
+  @Input() searchInput: string='';
   displayedColumns: string[] = ['Name','Description', 'Price', 'Category', 'Count In Stock','Details','Edit','Delete'];
   product!:Product;
   dataSource:any;
   editProduct:string="";
   errors:any;
+  deleteID:string='';
+  
   constructor(private adminService:AdminService,private modal:NgxSmartModalService) { }
+  ngAfterViewInit(): void {
+    this.paginator.nextPage
+  }
+  ngOnDestroy(): void {
+    //this.adminService.searchSubject.unsubscribe();
+  }
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
+  confirmDelete(id:string){
+  this.modal.open('confirm');
+  this.deleteID=id;
+  }
   AddProductForm=new FormGroup({
     name:new FormControl("",[Validators.required]),
     description:new FormControl("",[Validators.required]),
@@ -34,16 +47,23 @@ export class ProductsComponent implements OnInit {
     image:new FormControl("",[Validators.required])
   })
   ngOnInit(): void {
-    this.adminService.getProducts().subscribe({
-      next:(data:any)=>{ console.log(data);
-      
-        this.dataSource=new MatTableDataSource<Product>(data.products);
-        this.dataSource._updateChangeSubscription();
-      },
-      error:(err)=>{
-        console.log(err);    
+    this.adminService.searchSubject.subscribe({
+      next:(data)=>{
+        this.adminService.getProducts(data ||'').subscribe({
+          next:(data:any)=>{ console.log(data);
+          
+            this.dataSource=new MatTableDataSource<Product>(data.products);
+            this.dataSource._updateChangeSubscription();
+          },
+          error:(err)=>{
+              
+          }
+        })
+
       }
     })
+    this.adminService.searchSubject.next('');
+
   }
 
   onFileSelect(event:any) {
@@ -55,6 +75,10 @@ export class ProductsComponent implements OnInit {
     }
   }
   openAddModal(){
+    this.editProduct="";
+      this.AddProductForm.patchValue({'name':'','description':'','price':0,'countInStock':0,'rating':0,'category':'','isFeatured':true});
+    console.log("Dasd");
+    
     this.modal.open("addModal");
   }
 
@@ -69,17 +93,19 @@ let {name,description,price,countInStock,rating,category}=data.product;
 
 
         this.AddProductForm.setValue({'name':name,'description':description,'price':price,'countInStock':countInStock,'rating':rating,'category':category,'isFeatured':true,'image':'TEST'});
-
-    },
+        
+      },
   error:(err)=>{
-    console.log(err);
+   
     
   }})
   }
 
  
   addProduct(){
-
+   /*  this.AddProductForm.setValue({'name':'','description':'','price':0,'countInStock':0,'rating':0,'category':'','isFeatured':true,'image':''});
+    console.log("data");
+ */
     if(this.AddProductForm.valid){
       if(this.editProduct!=""){
         this.adminService.updateProduct(this.editProduct,this.AddProductForm.value).subscribe({
@@ -89,7 +115,6 @@ let {name,description,price,countInStock,rating,category}=data.product;
             this.dataSource._updateChangeSubscription();
             this.modal.resetModalData("addModal");
             this.modal.close("addModal");
-            console.log(data);
             
             this.editProduct="";
             
@@ -137,15 +162,17 @@ let {name,description,price,countInStock,rating,category}=data.product;
     }
     
   }
-  deleteProduct(id:string){
-    this.adminService.deleteProduct(id).subscribe({
+  deleteProduct(){
+    if(this.deleteID)
+    this.adminService.deleteProduct(this.deleteID).subscribe({
       next:(data:any)=>{
-        console.log(data);
+      
         
         let index=this.dataSource.filteredData.findIndex((x:any)=>x._id ===data.product._id);
         this.dataSource.filteredData.splice(index,1);
         
         this.dataSource._updateChangeSubscription();
+        this.deleteID='';
         
       },
       error:(err)=>{
@@ -178,7 +205,8 @@ let {name,description,price,countInStock,rating,category}=data.product;
   }
 
   ngOnChanges(){
-    this.adminService.getProducts().subscribe({
+    
+    this.adminService.getProducts('').subscribe({
       next:(data:any)=>{ console.log(data);
       
         this.dataSource=new MatTableDataSource<Product>(data.products);

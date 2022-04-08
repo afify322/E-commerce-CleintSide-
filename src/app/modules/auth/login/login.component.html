@@ -1,6 +1,10 @@
-<div *ngIf="!loading" class="card">
-  <h1 class="head">Sign In</h1>
-  <form [formGroup]="login">
+<div  class="card">
+  <app-spinner *ngIf="loading" style="    position: absolute;
+  z-index: 1000;
+  margin-left: 180px;
+  bottom: 45px;"></app-spinner>
+  <form [formGroup]="login" *ngIf="!loading">
+    <h1 class="head"><i class="fa fa-user" aria-hidden="true"></i>  Sign In</h1>
 
     <span style="color: red;"> {{error}}</span>
 
@@ -15,9 +19,6 @@
 
     <button type="submit" style="width: 100%;" class="btn btn-primary" (click)="loginSubmit()"
       [disabled]="!login.valid">log in</button>
+      <a routerLink="/auth/signup" style="color: #076585;width: 200px;margin: auto; text-align: center; font-weight: bold;"> Sign up Here !</a>
   </form>
-  <a style="color: #fff; margin-top: 10px; font-size: 20px;" routerLink="/auth/signup">new user ?<span
-      style="color:rgb(157, 157, 231); margin-left: 25px; font-weight: bold;"> click here for sign up</span></a>
 </div>
-
-<app-spinner *ngIf="loading"></app-spinner>

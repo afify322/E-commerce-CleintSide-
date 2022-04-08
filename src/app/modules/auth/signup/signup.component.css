@@ -1,27 +1,37 @@
+
 .card{
     margin-top: 10px;
     border: none;
-    width: 500px;
+    width: 800px;
     padding: 40px;
     position: absolute;
-    top: 80%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: hsla(205, 46%, 30%, 1);
-    background: linear-gradient(90deg,hsla(205, 46%, 30%, 1)0%,hsla(260, 29%, 36%, 1)100%);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(232, 239, 239);
+    border-radius: 10px;
+    
 }
-label{
-    color: white;
-}
-.error-message-span{
-    color: red;
-    margin-top: 5px; 
-  }
 
-  .head{
-      font-size: 50px;
-      color: white;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
-  }
+label{
+    color: #076585;
+}
+
+.head{
+    font-size: 50px;
+    color: #076585;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.left , .right{
+    width: 45%;
+}
+
+.wrapper{
+    gap: 40px;
+}
+.error-message{
+    color: red;
+}

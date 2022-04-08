@@ -22,7 +22,8 @@ export class OrdersComponent implements OnInit,OnChanges {
   paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.adminService.getOrders().subscribe({
+   // this.adminService.
+    this.adminService.getOrders('').subscribe({
       next:(data:any)=>{ 
         
         this.dataSource=new MatTableDataSource<Order>(data.orders);

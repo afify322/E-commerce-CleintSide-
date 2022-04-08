@@ -9,7 +9,9 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from './spinner/spinner.component';
-
+import { CategoryNavComponent } from './category-nav/category-nav.component';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from "@angular/material/chips";
 
 
 @NgModule({
@@ -20,20 +22,25 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ModalComponent,
     LoadingSpinnerComponent,
     ErrorPageComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CategoryNavComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatChipsModule
+    
   ],
   exports:[  HeaderComponent,
     FooterComponent,
     PreviewCartComponent,
     ModalComponent,
     LoadingSpinnerComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CategoryNavComponent
     
   ],
   providers:[]

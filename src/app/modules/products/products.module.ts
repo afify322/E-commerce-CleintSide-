@@ -14,6 +14,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 
 
