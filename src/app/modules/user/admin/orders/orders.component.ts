@@ -29,7 +29,6 @@ export class OrdersComponent implements OnInit,OnChanges {
         this.dataSource=new MatTableDataSource<Order>(data.orders);
       },
       error:(err)=>{
-        console.log(err);    
       }
     })
   }
@@ -37,7 +36,6 @@ export class OrdersComponent implements OnInit,OnChanges {
   confirmOrder(id:string){
     this.adminService.updateOrder(id,status.completed).subscribe({
       next:(data:any)=>{
-        console.log(data);
         
         let index=this.dataSource.filteredData.findIndex((x:any)=>x._id ==data.order._id);        
         this.dataSource.filteredData[index].status="completed";
@@ -45,7 +43,6 @@ export class OrdersComponent implements OnInit,OnChanges {
 
       },
       error:(err)=>{
-        console.log(err);
         
       }
     })
@@ -53,7 +50,6 @@ export class OrdersComponent implements OnInit,OnChanges {
   cancelOrder(id:string){
     this.adminService.updateOrder(id,status.canceled).subscribe({
       next:(data:any)=>{
-        console.log(data);
         
        let index=this.dataSource.filteredData.findIndex((x:any)=>x._id ===data.order._id);
 
@@ -62,7 +58,6 @@ export class OrdersComponent implements OnInit,OnChanges {
 
       },
       error:(err)=>{
-        console.log(err);
         
       }
     })
@@ -75,10 +70,8 @@ export class OrdersComponent implements OnInit,OnChanges {
         this.dataSource.filteredData.splice(index,1);
         this.dataSource._updateChangeSubscription();
         
-        console.log({data},{index});
       },
       error:(err)=>{
-console.log(err);
 
       }
     })

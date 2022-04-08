@@ -57,10 +57,8 @@ export class UsersDashboardComponent implements AfterViewInit,OnDestroy {
         let index=this.dataSource.filteredData.findIndex(x=>x._id==data.user._id);
         this.dataSource.filteredData.splice(index,1);
         this.dataSource._updateChangeSubscription();
-        console.log(data);
         
       },error:(err)=>{
-        console.log(err);
         
       }});
      

@@ -30,7 +30,6 @@ export class SignupComponent implements OnInit {
     })
   }
   onSubmit(){
-    console.log(this.profileForm);
     
     this.loading=true;
     if(this.profileForm.status=== 'VALID'){
@@ -38,7 +37,6 @@ export class SignupComponent implements OnInit {
         localStorage.setItem("token" , data.token);
         this.router.navigate(['/auth/login']);
       }, error : (data:any)=>{
-        console.log(data);
         
        this.loading=false;
        

@@ -69,7 +69,6 @@ export class ProductsComponent implements OnInit,OnDestroy,AfterViewInit {
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
       
       this.AddProductForm.patchValue({'image':file});
     }
@@ -77,7 +76,6 @@ export class ProductsComponent implements OnInit,OnDestroy,AfterViewInit {
   openAddModal(){
     this.editProduct="";
       this.AddProductForm.patchValue({'name':'','description':'','price':0,'countInStock':0,'rating':0,'category':'','isFeatured':true});
-    console.log("Dasd");
     
     this.modal.open("addModal");
   }
@@ -120,7 +118,6 @@ let {name,description,price,countInStock,rating,category}=data.product;
             
           },
           error:(err)=>{
-            console.log(err);
             this.editProduct="";
       
           }
@@ -146,7 +143,6 @@ let {name,description,price,countInStock,rating,category}=data.product;
               
             },
             error:(err)=>{
-              console.log(err);
               
               this.errors=err.error;
               
@@ -156,7 +152,6 @@ let {name,description,price,countInStock,rating,category}=data.product;
       }
 
     }else{
-      console.log(this.AddProductForm);
       
       this.errors=this.AddProductForm.errors
     }
@@ -187,18 +182,15 @@ let {name,description,price,countInStock,rating,category}=data.product;
         this.product=data.product;
         this.modal.open('modal');
       }, error:(err)=>{
-        console.log(err);  
       }
     })
   }
   edit(id:string,body:Product){
     this.adminService.updateProduct(id,body).subscribe({
       next:(data)=>{
-        console.log(data);
         
       },
       error:(err)=>{
-        console.log(err);
         
       }
     })
@@ -212,7 +204,6 @@ let {name,description,price,countInStock,rating,category}=data.product;
         this.dataSource=new MatTableDataSource<Product>(data.products);
       },
       error:(err)=>{
-        console.log(err);    
       }
     })
   }
